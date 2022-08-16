@@ -1,0 +1,83 @@
+
+<section class="row">
+  <!-- start filter -->
+  <div class="col-12 col-md-4 p-2">
+    <!-- accordion form angular material -->
+      <mat-accordion  class="rounded-3 border border-1 d-block">
+        <mat-expansion-panel class="sub-con-color" [expanded]="true" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <span>{{'Filter' | translate}}</span>
+
+            </mat-panel-title>
+            <mat-panel-description class="flex flex-row-reverse">
+              <mat-icon class="text-color">filter_list</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <!-- start content -->
+          <div class="mt-3 mb-4">
+            <div class="position-relative my-3 d-flex flex-column">
+              <mat-icon class="position-absolute translate-middle-y top-50 bottom-50 start-5">search</mat-icon>
+              <!-- filter input ===> it filters the table -->
+              <input matInput (keyup)="applyFilter($event)" class="form-control ps-5" placeholder="{{'Search...' | translate}}" #input>
+            </div>
+            <!-- sort table by Powers when ===> true or by hero name when ==> false -->
+            <mat-slide-toggle [checked]="false" (click)="sortData()">{{'SortByPower' | translate}}</mat-slide-toggle>
+          </div>
+          <!-- end content -->
+
+        </mat-expansion-panel>
+      </mat-accordion>
+  </div>
+  <!-- end filter -->
+
+  <!-- start table -->
+  <div class="col-12 col-md-8 p-2">
+    <div class=" overflow-hidden">
+      <!-- table using angular material -->
+      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 table-con sub-con-color">
+
+        <!-- HeroName Column -->
+        <ng-container matColumnDef="HeroName">
+          <th #nameH class="d-none d-md-table-cell fw-bolder" mat-header-cell  *matHeaderCellDef mat-sort-header> {{'HeroName' | translate}} </th>
+          <td class="p-3 d-block d-md-table-cell text-color" mat-cell *matCellDef="let element"><span class="d-md-none me-5">{{'HeroName' | translate}}</span> {{element.HeroName}} </td>
+        </ng-container>
+
+        <!-- Powers Column -->
+        <ng-container matColumnDef="Powers">
+          <th #powersH class="d-none d-md-table-cell fw-bolder " mat-header-cell  *matHeaderCellDef mat-sort-header> {{'Powers' | translate}} </th>
+          <td class="p-3 d-block d-md-table-cell text-color" mat-cell *matCellDef="let element"><span class="d-md-none me-5">{{'Powers' | translate}}</span> {{element.Powers}} </td>
+        </ng-container>
+
+        <!-- Rate Column -->
+        <ng-container matColumnDef="Rate">
+          <th class="d-none d-md-table-cell fw-bolder" mat-header-cell *matHeaderCellDef mat-sort-header> {{'Rate' | translate}} </th>
+          <td class="p-3 d-block d-md-table-cell text-color" mat-cell *matCellDef="let element">
+            <div class="d-flex flex-row">
+              <span class="d-md-none me-5">{{'Rate' | translate}}</span>
+
+              <!-- loop on the 5 stars and check the number of filled stars -->
+              <ng-container *ngFor="let item of [1,2,3,4,5]">
+                <mat-icon *ngIf="checkStar(element.Rate,item)" class="primary-color-c">star</mat-icon>
+                <mat-icon *ngIf="!checkStar(element.Rate,item)" class="primary-color-c">star_border</mat-icon>
+              </ng-container>
+
+            </div>
+          </td>
+        </ng-container>
+
+        <tr class="d-none d-md-table-row" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr class="t-data" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <!-- Row shown when there is no matching data from filtering -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">{{'Nodatamatchingthefilter' | translate}} "{{input.value}}"</td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+  <!-- end table -->
+
+</section>

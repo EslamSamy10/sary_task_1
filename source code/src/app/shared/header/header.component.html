@@ -1,0 +1,14 @@
+<section class="sub-con-color d-flex align-items-center justify-content-between shadow rounded-3 p-3 flex-row-reverse">
+  <div class="dropdown">
+    <button class="btn bg-transparent dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      lang
+    </button>
+    <ul class="dropdown-menu">
+      <li><a (click)="changeCurrentLang('en')" class="dropdown-item">English</a></li>
+      <li><a (click)="changeCurrentLang('ar')" class="dropdown-item">العربية</a></li>
+    </ul>
+  </div>
+  <mat-icon class="cursor-pointer d-md-none" data-bs-toggle="offcanvas" data-bs-target="#sidebar-sm">menu</mat-icon>
+
+
+</section>

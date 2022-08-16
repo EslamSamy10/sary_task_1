@@ -1,0 +1,23 @@
+<section class="sub-con-color rounded-3 border border-1 d-flex flex-column">
+
+  <!-- profile icon -->
+  <div class="bg-secondary bg-opacity-25 d-flex justify-content-center align-items-center mx-auto my-3 p-4 rounded-circle">
+    <mat-icon class="icon-display">person_fill</mat-icon>
+  </div>
+
+  <!-- profile data -->
+  <div class="my-3 d-flex flex-column justify-content-between">
+    <div class="px-3 row my-1">
+      <div class="p-0 col-4 col-lg-2 primary-color-c">{{'HeroName' | translate}}:</div>
+      <div class="p-0 col-8 col-lg-10">{{name | uppercase}}</div>
+    </div>
+    <div class="px-3 row my-1">
+      <div class="p-0 col-4 col-lg-2 primary-color-c">{{'Description' | translate}}:</div>
+      <div class="p-0 col-8 col-lg-10">{{Description}}</div>
+    </div>
+    <div class="px-3 my-5 d-flex flex-column">
+      <p class="mb-1 primary-color-c">{{'Powers' | translate}}</p>
+      <p>{{Powers}}</p>
+    </div>
+  </div>
+</section>
